@@ -1,0 +1,60 @@
+spring:
+  main:
+    banner-mode: "off" # Requires to be quoted
+  application:
+    name: service
+  datasource.driverClassName: com.mysql.jdbc.Driver
+  datasource:
+    url: "jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?useSSL=false&useConfigs=maxPerformance"
+    username: "${DATABASE_USER}"
+    password: "${DATABASE_PASSWORD}"
+    hikari:
+      connectionTimeout: 3000
+      maxLifetime: 60000
+      prepStmtCacheSize: 250
+      prepStmtCacheSqlLimit: 2048
+      connectionTestQuery: "SELECT 1"
+  http:
+    log-request-details: "${LOG_HTTP_REQUEST_DETAILS:true}"
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: "${GOOGLE_OAUTH2_CLIENT_ID}"
+            client-secret: "${GOOGLE_OAUTH2_CLIENT_SECRET}"
+
+logging:
+  level:
+    org:
+      springframework:
+        web: "${LOG_LEVEL:DEBUG}"
+      controlaltdel:
+        sample:
+          service: "${LOG_LEVEL:DEBUG}"
+
+server:
+  error:
+    whitelabel:
+      enabled: "false"
+  port: 8080
+  servlet:
+    context-path: /
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8001
+    servlet:
+      context-path: /
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: "/api-docs"
