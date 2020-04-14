@@ -32,7 +32,7 @@
 		<maven-pmd-plugin.version>3.12.0</maven-pmd-plugin.version>
 		<spotbugs-maven-plugin.version>3.1.12.2</spotbugs-maven-plugin.version>
 		<build-tools.version>0.0.6</build-tools.version>
-		<coverage.minimum>0.75</coverage.minimum>
+		<coverage.minimum>0.20</coverage.minimum>
 		<cpd.tokens>150</cpd.tokens>
 		<pmd.priority>4</pmd.priority>
 	</properties>
