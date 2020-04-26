@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -35,7 +36,16 @@ export default function SimpleTable() {
   let isLoading = true;
 
   async function listVisitors() {
-    let response = await fetch("/api/v1/visitor");
+    let response = await fetch(
+      "/api/v1/visitor",
+      {
+        method: "GET", 
+        headers: {
+            'X-XSRF-TOKEN':  Cookies.get('XSRF-TOKEN'),
+        },
+        credentials: "include",
+    }
+      );
     let body = await response.json();
     updateData(body);
   }
