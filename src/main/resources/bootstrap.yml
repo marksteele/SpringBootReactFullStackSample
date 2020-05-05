@@ -15,7 +15,7 @@ spring:
       prepStmtCacheSqlLimit: 2048
       connectionTestQuery: "SELECT 1"
   http:
-    log-request-details: "${LOG_HTTP_REQUEST_DETAILS:true}"
+    log-request-details: "${LOG_HTTP_REQUEST_DETAILS:false}"
   security:
     oauth2:
       client:
@@ -28,7 +28,7 @@ logging:
   level:
     org:
       springframework:
-        web: "${LOG_LEVEL:DEBUG}"
+        web: "${LOG_LEVEL:INFO}"
       controlaltdel:
         sample:
           service: "${LOG_LEVEL:DEBUG}"
